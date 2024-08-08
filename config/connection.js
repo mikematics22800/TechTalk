@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 // Importing the Sequelize constructor from the sequelize package
-const Sequelize = require('sequelize');
+const { Sequelize } = require('sequelize');
 
 // Creating a new Sequelize instance based on environment variables
 const sequelize = process.env.DB_URL
@@ -13,12 +13,7 @@ const sequelize = process.env.DB_URL
       // Setting the host to 'localhost'
       host: 'localhost',
       // Specifying the database dialect as 'postgres'
-      dialect: 'postgres',
-      // Additional options for the dialect
-      dialectOptions: {
-        // Enabling support for decimal numbers
-        decimalNumbers: true,
-      },
+      dialect: 'postgres'
     });
 
 // Exporting the sequelize instance for use in other parts of the application
