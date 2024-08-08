@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 
 // Route to render the dashboard partial
 router.get('/dashboard', (req, res) => {
-  res.render('dashboard', { partial: 'dashboard' });
+  res.render('home', { partial: 'dashboard' });
 });
 
 
