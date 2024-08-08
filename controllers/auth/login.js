@@ -3,7 +3,7 @@ const { User } = require('../../models');
 
 // Route to render the login page
 router.get('/', (req, res) => {
-  res.render('login');
+  res.render('login', { partial: 'login' });
 });
 
 // Route for user login

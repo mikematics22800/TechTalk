@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 // Route to render the register page
 router.get('/', (req, res) => {
-  res.render('register');
+  res.render('register', { partial: 'register' });
 });
 
 // Route to handle user registration

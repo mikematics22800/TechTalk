@@ -1,45 +1,40 @@
-const { Model } = require('sequelize'); // Import Sequelize Model
-const bcrypt = require('bcrypt'); // Import bcrypt for password hashing
-const sequelize = require('../config/connection.js'); // Import Sequelize instance
+const { Model, DataTypes } = require('sequelize');
+const bcrypt = require('bcrypt'); 
+const sequelize = require('../config/connection.js');
 
-// Define User class extending Sequelize Model
 class User extends Model {}
 
-// Initialize User model
 User.init(
   {
     id: {
-      type: sequelize.DataTypes.INTEGER, // Integer type
-      primaryKey: true, // Primary key
-      autoIncrement: true // Auto-increment
+      type: DataTypes.INTEGER,
+      primaryKey: true, 
+      autoIncrement: true
     },
     username: {
-      type: sequelize.DataTypes.STRING, // String type
-      allowNull: false // Non-nullable
+      type: DataTypes.STRING,
+      allowNull: false 
     },
     email: {
-      type: sequelize.DataTypes.STRING, // String type
-      allowNull: true // Nullable
+      type: DataTypes.STRING, 
+      allowNull: true 
     },
     password: {
-      type: sequelize.DataTypes.STRING, // String type
-      allowNull: true // Nullable
+      type: DataTypes.STRING,
+      allowNull: true 
     }
   },
   {
     hooks: {
       // Hook to hash password before creating a new user
       beforeCreate: async (newUserData) => {
-        newUserData.password = await bcrypt.hash(newUserData.password, 10); // Hash password with bcrypt
-        return newUserData; // Return modified user data
+        newUserData.password = await bcrypt.hash(newUserData.password, 10); 
+        return newUserData; 
       },
     },
-    sequelize, // Sequelize instance
-    timestamps: false, // Disable timestamps
-    freezeTableName: true, // Prevent table name pluralization
-    underscored: true, // Use snake_case for automatically added attributes
-    modelName: 'user' // Model name
+    sequelize, 
+    modelName: 'user',
   }
 );
 
-module.exports = User; // Export User model
+module.exports = User; 
