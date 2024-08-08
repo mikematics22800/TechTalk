@@ -1,10 +1,12 @@
 <div id="auth">
   <nav>
-    <h1>Techtalk</h1>
-    <div>
+    <h1>TechTalk</h1>
+    <div id="nav-links">
       <a href="/auth/login">Login</a>
       <a href="/auth/register">Register</a>
     </div>
   </nav>
-  {{> (lookup . 'partial') }}
+  <div id="form-container"> 
+    {{> (lookup . 'partial') }}
+  </div>
 </div>

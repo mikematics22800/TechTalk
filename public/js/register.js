@@ -32,4 +32,4 @@ const registerFormHandler = async (event) => {
 };
 
 // Add an event listener to the register form to handle form submission
-document.querySelector('#register-form').addEventListener('submit', registerFormHandler);
+document.querySelector('#register').addEventListener('submit', registerFormHandler);

@@ -15,7 +15,7 @@ nav {
 	color: #fff;
 	width: 100vw;
 	height: 100px;
-	padding: 5%;
+	padding: 0 5%;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -32,11 +32,12 @@ a {
 	text-decoration: none;
 }
 
-#login, #register {
+#form-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 100px;
+	width: 100vw;
+	height: calc(100vh - 100px);
 }
 
 form {
