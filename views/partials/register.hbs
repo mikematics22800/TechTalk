@@ -6,15 +6,11 @@
   </div>
   <div class="input-container">
     <h3>Password</h3>
-    <input type="password" id="password-register" required>
+    <input type="password" id="password-register" required pattern=".{8,}" title="Password must be at least 8 characters long">
   </div>
   <div class="input-container">
     <h3>Confirm Password</h3>
-    <input type="password" id="password-confirm" required>
+    <input type="password" id="password-confirm" required pattern=".{8,}" title="Password must be at least 8 characters long">
   </div>
   <button type="submit">Register</button>
-  <a href="/auth/login">Already have an account?</a>
 </form>
-
-
-   

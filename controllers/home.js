@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 // Route to render the home partial
 router.get('/', (req, res) => {
-  res.render('home', { partial: 'home' });
+  res.render('home', { partial: 'homepage' });
 });
 
 // Route to render the dashboard partial

@@ -11,11 +11,11 @@ const registerFormHandler = async (event) => {
   if (username && password) {
     // If the password and passwordConfirm do not match, show an alert
     if (password !== passwordConfirm) {
-      alert('Passwords do not match');
+      alert('Passwords do not match.');
       return;
     }
     // Send a POST request to the register API endpoint
-    const response = await fetch('/auth/register', {
+    const response = await fetch('/api/users/register', {
       method: 'POST',
       body: JSON.stringify({ username, password }), // Send email and password in the request body
       headers: { 'Content-Type': 'application/json' }, // Set the request headers to indicate JSON content

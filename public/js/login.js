@@ -1,4 +1,3 @@
-
 // Function to handle the login form submission
 const loginFormHandler = async (event) => {
   event.preventDefault(); // Prevent the default form submission behavior
@@ -10,7 +9,7 @@ const loginFormHandler = async (event) => {
   // Check if both email and password are provided
   if (username && password) {
     // Send a POST request to the login API endpoint
-    const response = await fetch('/auth/login', {
+    const response = await fetch('/api/users/login', {
       method: 'POST',
       body: JSON.stringify({ username, password }), // Send email and password in the request body
       headers: { 'Content-Type': 'application/json' }, // Set the request headers to indicate JSON content
@@ -21,7 +20,7 @@ const loginFormHandler = async (event) => {
       document.location.replace('/');
     } else {
       // If the response is not OK, show an alert with an error message
-      alert('Failed to log in');
+      alert('Invalid username or password.');
     }
   }
 };

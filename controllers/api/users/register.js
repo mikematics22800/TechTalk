@@ -1,11 +1,6 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User } = require('../../../models');
 const bcrypt = require('bcrypt');
-
-// Route to render the register page
-router.get('/', (req, res) => {
-  res.render('auth', { partial: 'register' });
-});
 
 // Route to handle user registration
 router.post('/', async (req, res) => {

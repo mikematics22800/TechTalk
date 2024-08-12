@@ -35,21 +35,20 @@ app.use(express.json()); // Middleware to parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded bodies
 app.use(express.static(path.join(__dirname, 'public'))); // Serving static files from the 'public' directory
 
-// Middleware to redirect to the login page if not logged in and to the home page if logged in
-app.use((req, res, next) => {
-  if (!req.session.logged_in) {
-    if (!req.url.startsWith('/auth')) {
-      return res.redirect('/auth/login');
-    }
+const checkAuth = (req, res, next) => {
+  // If the user isn't logged in, redirect them to the login route. 
+  if (!req.session.logged_in && !req.url.startsWith('auth')) {
+    res.redirect('/auth/login');
+  // If the user is logged in, redirect them to the home route.
+  } else if (req.session.logged_in && !req.url.startsWith('home')) {
+    res.redirect('/home/');
   } else {
-    if (!req.url.startsWith('/home')) {
-      return res.redirect('/home');
-    }
+    next();
   }
-  next();
-});
+};
 
-app.use(routes); // Using the imported routes
+// Using the routes from the controllers directory and checking authentication
+app.use(routes, checkAuth);
 
 // Syncing the Sequelize `models and starting the server
 sequelize.sync({ force: false }).then(() => {

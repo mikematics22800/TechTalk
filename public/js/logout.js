@@ -3,14 +3,14 @@ const logout = async (event) => {
   // Prevent the default behavior of the form
   event.preventDefault();
   // Send a POST request to the logout API endpoint
-  const response = await fetch('/auth/logout', {
+  const response = await fetch('/api/users/logout', {
     method: 'POST', // Use the POST method for the request
     headers: { 'Content-Type': 'application/json' }, // Set the request headers to indicate JSON content
   });
 
   // If the response is OK, redirect to the login page
   if (response.ok) {
-    document.location.replace('/auth/login');
+    document.location.replace('/api/users/login');
   } else {
     // If the response is not OK, show an alert with the response status text
     alert(response.statusText);
