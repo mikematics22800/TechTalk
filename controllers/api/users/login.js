@@ -26,13 +26,11 @@ router.post('/', async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-
-      // Send success response
-      res.json({ message: 'You are now logged in.' });
+      res.json({ user: userData });
     });
   } catch (err) {
     // Handle unexpected errors
-    res.status(500).json({ message: 'An error occurred during login', error: err.message });
+    res.status(500).json({ message: 'An unexpected error has occurred.', error: err.message });
   }
 });
 

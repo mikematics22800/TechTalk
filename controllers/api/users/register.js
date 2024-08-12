@@ -14,18 +14,15 @@ router.post('/', async (req, res) => {
       password: hashedPassword,
     });
 
-    // Save the user session
+    // Save the user session and set the session variables
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-
-      // Respond with the created user data
-      res.json(userData);
+      res.json({ user: userData });
     });
   } catch (err) {
-    // Handle any errors that occur during user creation
-    res.status(400).json({error: err.message});
-    console.log(err);
+    // Handle unexpected errors
+    res.status(500).json({ message: 'An unexpected error has occurred.', error: err.message });
   }
 });
 

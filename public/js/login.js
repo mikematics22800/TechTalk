@@ -1,3 +1,4 @@
+
 // Function to handle the login form submission
 const loginFormHandler = async (event) => {
   event.preventDefault(); // Prevent the default form submission behavior
@@ -20,7 +21,7 @@ const loginFormHandler = async (event) => {
       document.location.replace('/');
     } else {
       // If the response is not OK, show an alert with an error message
-      alert('Invalid username or password.');
+      alert(response.statusText);
     }
   }
 };

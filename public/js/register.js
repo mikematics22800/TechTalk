@@ -25,7 +25,7 @@ const registerFormHandler = async (event) => {
       document.location.replace('/');
     } else {
       // If the response is not OK, show an alert with an error message
-      alert('Failed to create account');
+      alert(response.statusText);
     }
   }
 };
