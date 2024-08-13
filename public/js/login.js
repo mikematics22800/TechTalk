@@ -21,7 +21,8 @@ const loginFormHandler = async (event) => {
       document.location.replace('/');
     } else {
       // If the response is not OK, show an alert with an error message
-      alert(response.statusText);
+      alert('Failed to log in.');
+      console.log(response.statusText);
     }
   }
 };

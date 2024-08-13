@@ -8,9 +8,22 @@ router.post('/', async (req, res) => {
     // Hash the password before saving it to the database
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
+    // Check if the user already exists
+    const existing = await User.findOne({
+      where: {
+        name: req.body.username,
+      },
+    });
+
+    // If the user already exists, send an error message
+    if (existing) {
+      res.status(400).json({ message: 'Username is taken.' });
+      return;
+    }
+
     // Create a new user with the hashed password
     const userData = await User.create({
-      username: req.body.username,
+      name: req.body.username,
       password: hashedPassword,
     });
 

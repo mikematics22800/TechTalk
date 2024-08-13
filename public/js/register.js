@@ -25,7 +25,8 @@ const registerFormHandler = async (event) => {
       document.location.replace('/');
     } else {
       // If the response is not OK, show an alert with an error message
-      alert(response.statusText);
+      alert('Failed to register.');
+      console.log(response.statusText);
     }
   }
 };

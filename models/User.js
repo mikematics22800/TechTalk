@@ -10,22 +10,20 @@ User.init(
       primaryKey: true, 
       autoIncrement: true
     },
-    username: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [8] 
-      }
+      allowNull: false
     }
   },
   {
     sequelize, 
     modelName: 'user',
+    timestamps: false
   }
 );
 

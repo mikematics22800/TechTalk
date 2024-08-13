@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 router.post('/', async (req, res) => {
   try {
     // Find user by username
-    const userData = await User.findOne({ where: { username: req.body.username } });
+    const userData = await User.findOne({ where: { name: req.body.username } });
 
     // If user not found, send error response
     if (!userData) {

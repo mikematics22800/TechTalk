@@ -51,6 +51,6 @@ const checkAuth = (req, res, next) => {
 app.use(routes, checkAuth);
 
 // Syncing the Sequelize `models and starting the server
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () => console.log(`Server listening on http://localhost:${PORT}.`));
 });
