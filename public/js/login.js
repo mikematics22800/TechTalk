@@ -1,4 +1,3 @@
-
 // Function to handle the login form submission
 const loginFormHandler = async (event) => {
   event.preventDefault(); // Prevent the default form submission behavior

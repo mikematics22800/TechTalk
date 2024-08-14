@@ -29,9 +29,8 @@ router.post('/', async (req, res) => {
 
     // Save the user session and set the session variables
     req.session.save(() => {
-      req.session.user_id = userData.id;
+      req.session.user = userData;
       req.session.logged_in = true;
-      res.json({ user: userData });
     });
   } catch (err) {
     // Handle unexpected errors

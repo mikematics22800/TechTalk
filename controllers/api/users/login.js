@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { User } = require('../../../models');
-const bcrypt = require('bcrypt');
 
 // Route for user login
 router.post('/', async (req, res) => {
@@ -14,8 +13,8 @@ router.post('/', async (req, res) => {
       return;
     }
 
-    // Check if the provided password is valid
-    const validPassword = await bcrypt.compare(req.body.password, userData.password);
+    // Verify the posted password with the password store in the database
+    const validPassword = userData.checkPassword(req.body.password);
 
     // If password is invalid, send error response
     if (!validPassword) {
@@ -24,9 +23,8 @@ router.post('/', async (req, res) => {
 
     // Save user session and set session variables
     req.session.save(() => {
-      req.session.user_id = userData.id;
+      req.session.user = userData;
       req.session.logged_in = true;
-      res.json({ user: userData });
     });
   } catch (err) {
     // Handle unexpected errors

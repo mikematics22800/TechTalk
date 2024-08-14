@@ -1,5 +1,14 @@
 <div id="dashboard">
   <button id="new-post">New Post</button>
   <ul class="posts">
+    {{#each posts as |post|}}
+      <li class="post">
+        <header>
+          <h1>{{post.title}}</h1>
+          <h4>Posted by {{post.username}} at {{post.createdAt}}</h4>
+        </header>
+        <p>{{post.content}}</p>
+      </li>
+    {{/each}}
   </ul>
 </div>

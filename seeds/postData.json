@@ -1,0 +1,27 @@
+[
+  {
+    "username": "Sal",
+    "title": "Test Post 1",
+    "content": "This is a test post."
+  },
+  {
+    "username": "Lernantino",
+    "title": "Test Post 2",
+    "content": "This is another test post."
+  },
+  {
+    "username": "Amiko",
+    "title": "Test Post 3",
+    "content": "This is yet another test post."
+  },
+  {
+    "username": "Jordan",
+    "title": "Test Post 4",
+    "content": "This is a test post."
+  },
+  {
+    "username": "Blake",
+    "title": "Test Post 5",
+    "content": "This is another test post."
+  }
+]

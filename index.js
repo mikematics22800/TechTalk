@@ -50,7 +50,7 @@ const checkAuth = (req, res, next) => {
 // Using the routes from the controllers directory and checking authentication
 app.use(routes, checkAuth);
 
-// Syncing the Sequelize `models and starting the server
-sequelize.sync({ force: true }).then(() => {
+// Syncing the Sequelize models and starting the server
+sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Server listening on http://localhost:${PORT}.`));
 });
