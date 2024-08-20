@@ -9,15 +9,19 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store); // S
 const app = express(); // Initializing the Express application
 const PORT = process.env.PORT || 3001; // Setting the port for the server
 
+const store = new SequelizeStore({
+  db: sequelize
+});
+
+store.sync();
+
 // Creating a session configuration object
 app.use(session({
   secret: process.env.SESSION_SECRET, // Secret for signing the session ID cookie
   cookie: {}, // Cookie options (can be customized)
   resave: false, // Prevents session from being saved back to the session store if it wasn't modified
   saveUninitialized: true, // Forces a session that is "uninitialized" to be saved to the store
-  store: new SequelizeStore({
-    db: sequelize // Using Sequelize to store session data
-  })
+  store: store // Using Sequelize to store session data
 }));
 
 // Creating an instance of Handlebars

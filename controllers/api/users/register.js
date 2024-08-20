@@ -1,12 +1,10 @@
 const router = require('express').Router();
 const { User } = require('../../../models');
-const bcrypt = require('bcrypt');
 
 // Route to handle user registration
 router.post('/', async (req, res) => {
   try {
-    // Hash the password before saving it to the database
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
 
     // Check if the user already exists
     const existing = await User.findOne({
@@ -22,19 +20,21 @@ router.post('/', async (req, res) => {
     }
 
     // Create a new user with the hashed password
-    const userData = await User.create({
+    const user = await User.create({
       name: req.body.username,
-      password: hashedPassword,
+      password: req.body.password,
     });
 
     // Save the user session and set the session variables
     req.session.save(() => {
-      req.session.user = userData;
+      req.session.user = user;
       req.session.logged_in = true;
+      // Send success response
+      return res.status(200).json({ message: 'Register successful' });
     });
   } catch (err) {
     // Handle unexpected errors
-    res.status(500).json({ message: 'An unexpected error has occurred.', error: err.message });
+    res.status(500).json({ message: 'Failed to register due to unexpected error'});
   }
 });
 

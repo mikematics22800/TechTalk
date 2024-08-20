@@ -1,6 +1,6 @@
 // Function to handle the register form submission
-const registerFormHandler = async (event) => {
-  event.preventDefault(); // Prevent the default form submission behavior
+const registerFormHandler = async (e) => {
+  e.preventDefault(); // Prevent the default form submission behavior
 
   // Get the values from the email and password input fields
   const username = document.querySelector('#username-register').value.trim();
@@ -15,18 +15,18 @@ const registerFormHandler = async (event) => {
       return;
     }
     // Send a POST request to the register API endpoint
-    const response = await fetch('/api/users/register', {
+    const res = await fetch('/api/users/register', {
       method: 'POST',
       body: JSON.stringify({ username, password }), // Send email and password in the request body
       headers: { 'Content-Type': 'application/json' }, // Set the request headers to indicate JSON content
     });
     // If the response is OK, redirect to the homepage
-    if (response.ok) {
+    if (res.ok) {
       document.location.replace('/');
     } else {
       // If the response is not OK, show an alert with an error message
-      alert('Failed to register.');
-      console.log(response.statusText);
+      const err = await res.json();
+      alert(err.message);
     }
   }
 };

@@ -5,30 +5,32 @@ const { User } = require('../../../models');
 router.post('/', async (req, res) => {
   try {
     // Find user by username
-    const userData = await User.findOne({ where: { name: req.body.username } });
+    const user = await User.findOne({ where: { name: req.body.username } });
 
     // If user not found, send error response
-    if (!userData) {
-      res.status(400).json({ message: 'Incorrect username' });
+    if (!user) {
+      res.status(400).json({ message: 'Invalid username' });
       return;
     }
 
     // Verify the posted password with the password store in the database
-    const validPassword = userData.checkPassword(req.body.password);
-
+    const validPassword = user.checkPassword(req.body.password);
+    
     // If password is invalid, send error response
     if (!validPassword) {
-      res.status(400).json({ message: 'Incorrect password' });
+      res.status(400).json({ message: 'Invalid password' });
     }
 
     // Save user session and set session variables
     req.session.save(() => {
-      req.session.user = userData;
+      req.session.user = user;
       req.session.logged_in = true;
+      // Send success response
+      return res.status(200).json({ message: 'Login successful' });
     });
-  } catch (err) {
+  } catch {
     // Handle unexpected errors
-    res.status(500).json({ message: 'An unexpected error has occurred.', error: err.message });
+    res.status(500).json({ message: 'Failed to login due to unexpected error'});
   }
 });
 
