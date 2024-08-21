@@ -7,8 +7,16 @@ router.use('/home', home);
 router.use('/auth', auth);
 router.use('/api', api);
 
-router.use((req, res) => {
-  res.status(404).send('Error: Page not found');
+router.use((req, res, next) => {
+  if (req.session.logged_in && req.url !== '/home' && req.url !== '/home/dashboard') {
+    res.redirect('/home');
+  }
+  
+  if (!req.session.logged_in && req.url !== '/auth/login' && req.url !== '/auth/register') {
+    res.redirect('/auth/login');
+  }
+
+  next();
 });
 
 

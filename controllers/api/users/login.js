@@ -9,8 +9,7 @@ router.post('/', async (req, res) => {
 
     // If user not found, send error response
     if (!user) {
-      res.status(400).json({ message: 'Invalid username' });
-      return;
+      return res.status(400).json({ message: 'Invalid username' });
     }
 
     // Verify the posted password with the password store in the database
@@ -18,7 +17,7 @@ router.post('/', async (req, res) => {
     
     // If password is invalid, send error response
     if (!validPassword) {
-      res.status(400).json({ message: 'Invalid password' });
+      return res.status(400).json({ message: 'Invalid password' });
     }
 
     // Save user session and set session variables
