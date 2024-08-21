@@ -1,19 +1,20 @@
 // Function to handle the logout process
-const logout = async (event) => {
+const logout = async (e) => {
   // Prevent the default behavior of the form
-  event.preventDefault();
+  e.preventDefault();
   // Send a POST request to the logout API endpoint
-  const response = await fetch('/api/users/logout', {
+  const res = await fetch('/api/users/logout', {
     method: 'POST', // Use the POST method for the request
     headers: { 'Content-Type': 'application/json' }, // Set the request headers to indicate JSON content
   });
 
-  // If the response is OK, redirect to the login page
-  if (response.ok) {
+  // If the res is OK, redirect to the login page
+  if (res.ok) {
     document.location.replace('/api/users/login');
   } else {
-    // If the response is not OK, show an alert with the response status text
-    alert(response.statusText);
+    // If the res is not OK, show an alert with an error message
+    const err = await res.json();
+    alert(err.message);
   }
 };
 

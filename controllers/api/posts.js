@@ -5,13 +5,13 @@ const { Post } = require('../../models');
 router.post('/', async (req, res) => {
   try {
     const newPost = await Post.create({
-      user_id: req.session.user_id,
+      user_id: req.session.user.id,
       title: req.body.title,
       content: req.body.content,
     });
     res.status(200).json(newPost);
-  } catch (err) {
-    res.status(400).json(err);
+  } catch {
+    res.status(500).json({ message: 'Failed to upload post'});
   }
 });
 
@@ -21,7 +21,7 @@ router.delete('/:id', async (req, res) => {
     const postData = await Post.destroy({where: {id: req.params.id,}});
     res.status(200).json(postData);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({ message: 'Failed to delete post'});
   }
 });
 

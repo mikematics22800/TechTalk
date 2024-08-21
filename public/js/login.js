@@ -1,5 +1,5 @@
 // Function to handle the login form submission
-const loginFormHandler = async (e) => {
+const login = async (e) => {
   e.preventDefault(); // Prevent the default form submission behavior
 
   // Get the values from the email and password input fields
@@ -24,4 +24,4 @@ const loginFormHandler = async (e) => {
 };
 
 // Add an event listener to the login form to handle form submission
-document.querySelector('#login').addEventListener('submit', loginFormHandler);
+document.querySelector('#login').addEventListener('submit', login);

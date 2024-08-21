@@ -1,5 +1,5 @@
 // Function to handle the register form submission
-const registerFormHandler = async (e) => {
+const register = async (e) => {
   e.preventDefault(); // Prevent the default form submission behavior
 
   // Get the values from the email and password input fields
@@ -32,4 +32,4 @@ const registerFormHandler = async (e) => {
 };
 
 // Add an event listener to the register form to handle form submission
-document.querySelector('#register').addEventListener('submit', registerFormHandler);
+document.querySelector('#register').addEventListener('submit', register);

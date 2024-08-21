@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
       // Send success response
       return res.status(200).json({ message: 'Register successful' });
     });
-  } catch (err) {
+  } catch {
     // Handle unexpected errors
     res.status(500).json({ message: 'Failed to register due to unexpected error'});
   }
