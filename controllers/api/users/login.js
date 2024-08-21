@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
 
     // Save user session and set session variables
     req.session.save(() => {
-      req.session.user = user;
+      req.session.user = user.dataValues;
       req.session.logged_in = true;
       // Send success response
       return res.status(200).json({ message: 'Login successful' });

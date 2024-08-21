@@ -15,7 +15,7 @@ const login = async (e) => {
 
   // If the response is OK, redirect to the homepage
   if (res.ok) {
-    document.location.replace('/');
+    document.location.replace('/home');
   } else {
     // If the response is not OK, show an alert with an error message
     const err = await res.json();

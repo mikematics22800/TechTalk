@@ -1,11 +1,16 @@
 const router = require('express').Router();
 
-// Route to render the login page
+router.use('/', (req, res, next) => {
+  if (req.session.logged_in) {
+    return res.redirect('/home');
+  }
+  next();
+})
+
 router.get('/login', (req, res) => {
   res.render('auth', { partial: 'login' });
 });
 
-// Route to render the register page
 router.get('/register', (req, res) => {
   res.render('auth', { partial: 'register' });
 });

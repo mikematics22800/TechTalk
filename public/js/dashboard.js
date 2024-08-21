@@ -24,10 +24,10 @@ const submitPost = async (e) => {
   })
   if (res.ok) {
     alert('Post uploaded!');
+    modal.style.display = 'none';
   } else {
     // If the res is not OK, show an alert with an error message
     const err = await res.json();
-    modal.style.display = 'none';
     alert(err.message);
   }
 }
@@ -35,3 +35,4 @@ const submitPost = async (e) => {
 document.querySelector('#new-post').addEventListener('click', openPostModal);
 document.querySelector('#discard').addEventListener('click', closePostModal);
 document.querySelector('#make-post').addEventListener('submit', submitPost);
+

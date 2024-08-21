@@ -10,33 +10,38 @@ const formatDate = (dateString) => {
 const getPosts = async () => {
   const postData = await Post.findAll();
   const posts = postData.map((post) => {
-    const plainPost = post.get({ plain: true });
-    plainPost.createdAt = formatDate(plainPost.createdAt);
-    return plainPost;
+    const postValues = post.dataValues;
+    postValues.createdAt = formatDate(postValues.createdAt);
+    return postValues;
   });
   return posts;
 }
 
-getPosts().then((posts) => {
-  router.get('/', (req, res) => {
-    try {
-      res.render('home', { partial: 'homepage', posts });
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+router.use('/', (req, res, next) => {
+  if (!req.session.logged_in) {
+    return res.redirect('/auth/login');
+  }
+  next();
+})
 
-  router.get('/dashboard', (req, res) => {
-    const user = req.session.user;
-    try {
-      const userPosts = posts.filter(post => post.username === user.name);
-      res.render('home', { partial: 'dashboard', userPosts});
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+router.get('/', async (req, res) => {
+  const posts = await getPosts();
+  try {
+    res.render('home', { partial: 'homepage', posts });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
-
+router.get('/dashboard', async (req, res) => {
+  const posts = await getPosts();
+  const user = req.session.user;
+  try {
+    const userPosts = posts.filter(post => post.username === user.name);
+    res.render('home', { partial: 'dashboard', userPosts});
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;

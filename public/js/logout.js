@@ -10,7 +10,7 @@ const logout = async (e) => {
 
   // If the res is OK, redirect to the login page
   if (res.ok) {
-    document.location.replace('/api/users/login');
+    document.location.replace('/auth/login');
   } else {
     // If the res is not OK, show an alert with an error message
     const err = await res.json();

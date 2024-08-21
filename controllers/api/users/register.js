@@ -4,8 +4,6 @@ const { User } = require('../../../models');
 // Route to handle user registration
 router.post('/', async (req, res) => {
   try {
-
-
     // Check if the user already exists
     const existing = await User.findOne({
       where: {
