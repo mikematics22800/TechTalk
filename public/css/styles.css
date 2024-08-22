@@ -9,13 +9,13 @@
 }
 
 body {
-	background-color: #fff;
+	background-color: .fff;
 	font-family: 'Roboto', sans-serif;
 }
 
 nav {
-	background-color: #333;
-	color: #fff;
+	background-color: .333;
+	color: .fff;
 	width: 100vw;
 	height: 100px;
 	padding: 0 5%;
@@ -36,12 +36,15 @@ nav div {
 }
 
 a {
-	color: #fff;
 	text-decoration: none;
-	font-size: larger
 }
 
-nav button, #new-post {
+nav a {
+	color: .fff;
+	font-size: larger;
+}
+
+nav button, .new-post {
 	color: white;
 	background-color: gray;
 	border: none;
@@ -52,7 +55,7 @@ nav button, #new-post {
 	border-radius: 5px;
 }
 
-#form-container {
+.form-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -60,9 +63,9 @@ nav button, #new-post {
 	height: calc(100vh - 100px);
 }
 
-#auth form, #modal form {
-	background-color: #333;
-	color: #fff;
+.auth form, .modal form {
+	background-color: .333;
+	color: .fff;
 	width: 500px;
 	padding: 50px;
 	display: flex;
@@ -79,7 +82,7 @@ nav button, #new-post {
 	gap: 5px;
 }
 
-#auth input, #modal input {
+.auth input, .modal input {
 	width: 100%;
 	height: 50px;
 	padding: 10px;
@@ -89,7 +92,7 @@ nav button, #new-post {
 	outline: none;
 }
 
-#modal textarea {
+.modal textarea {
 	width: 100%;
 	height: 200px;
 	padding: 10px;
@@ -100,20 +103,20 @@ nav button, #new-post {
 	font-family: 'Roboto', sans-serif;
 }
 
-#auth button, #modal button {
+.auth button, .modal button {
 	width: 100%;
 	height: 50px;
 	border: none;
 	border-radius: 5px;
 	background-color: lightgray;
-	color: #333;
+	color: .333;
 	font-weight: bold;
 	cursor: pointer;
 	font-size: large;
 	margin-top: 25px;
 }
 
-#homepage, #dashboard {
+.homepage, .dashboard, .post-page, .edit-post {
 	padding: 50px;
 	width: 100vw;
 }
@@ -121,37 +124,46 @@ nav button, #new-post {
 .posts {
 	display: flex;
 	flex-direction: column;
-	gap: 50px;
+	gap: 25px;
 	width: 100%;
+	margin-top: 50px;
 }
 
-.post {
+.post, .userPost {
 	width: 100%;
 	list-style: none;
-	border: #333 5px solid;
+	border: .333 5px solid;
 	border-radius: 5px;
+	color: black;
 }
 
-.post header {
+.post header, .userPost {
 	width: 100%;
-	background-color: #333;
+	background-color: .333;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 25px;
-	color: #fff;
+	color: .fff;
 }
 
 .post h4 {
 	font-weight: 100;
 }
 
-.post p {
+.post div {
 	padding: 25px;
 	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
 }
 
-#modal {
+.post div a, .post div button {
+	width: fit-content;
+}
+
+.modal {
 	height: 100vh;
 	width: 100vw;
 	background-color: rgb(0, 0, 0, 0.5);
@@ -175,5 +187,29 @@ nav button, #new-post {
 	border: none;
 	border-radius: 5px;
 	background-color: lightgray;
-	color: #333;
+	color: .333;
+}
+
+.post span {
+	display: flex;
+	gap: 25px;
+	align-items: center;
+}
+
+.post a, .post button {
+	border: none;
+	background-color: gray;
+	font-weight: bold;
+	color: .fff;
+	padding: 10px;
+	border-radius: 5px;
+	transition-duration: .2s;
+	cursor: pointer;
+	font-size: small;
+}
+
+.comments {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
 }

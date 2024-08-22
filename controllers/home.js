@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post } = require('../models');
+const { Post, Comment } = require('../models');
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -8,8 +8,8 @@ const formatDate = (dateString) => {
 }
 
 const getPosts = async () => {
-  const postData = await Post.findAll();
-  const posts = postData.map((post) => {
+  let posts = await Post.findAll();
+  posts = posts.map((post) => {
     const postValues = post.dataValues;
     postValues.createdAt = formatDate(postValues.createdAt);
     return postValues;
@@ -34,14 +34,40 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/dashboard', async (req, res) => {
-  const posts = await getPosts();
-  const user = req.session.user;
+  let posts = await getPosts();
+  posts = posts.filter(post => post.username === req.session.user.name);
   try {
-    const userPosts = posts.filter(post => post.username === user.name);
-    res.render('home', { partial: 'dashboard', userPosts});
+    res.render('home', { partial: 'dashboard', posts });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+router.get('/posts/:id', async (req, res) => {
+  let post = await Post.findByPk(req.params.id)
+  post = post.dataValues;
+  post.createdAt = formatDate(post.createdAt);
+  let comments =  await Comment.findAll({ where: { post_id: req.params.id } });
+  comments = comments.map(comment => comment.dataValues);
+  try {
+    res.render('home', { partial: 'post', post, comments });
+  } catch (err) {
+    res.status(500).json(err)
+  }
+})
+
+router.get('/posts/:id/edit', async (req, res) => {
+  let post = await Post.findByPk(req.params.id)
+  post = post.dataValues;
+  if (post.username !== req.session.user.name) {
+    return res.redirect('/');
+  }
+  post.createdAt = formatDate(post.createdAt);
+  try {
+    res.render('home', { partial: 'post', post });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
 
 module.exports = router;

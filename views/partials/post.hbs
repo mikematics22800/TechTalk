@@ -1,0 +1,30 @@
+<div class="post-page">
+  <div class="post" id={{post.id}}>
+    <header>
+      <h1>{{post.title}}</h1>
+      <h4>Posted by {{post.username}} at {{post.createdAt}}</h4>
+    </header>
+    <div>
+      <p>{{post.content}}</p>
+      <button class="new-comment">Add Comment</button>
+      <div class="comments">
+        {{#each comments as |comment|}}
+          <div class="comment">
+            <h4>{{comment.username}}</h4>
+            <p>{{comment.content}}</p>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  <div class="modal">
+    <form class="add-comment" id={{post.id}}>
+      <textarea class="comment-content" pattern=".{0,480}" title="Exceeded character limit" required></textarea> 
+      <div class="button-container">
+        <button class="submit-comment" type="submit">Submit</button>
+        <button class="discard-comment" type="button">Discard</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="/js/post.js"></script>

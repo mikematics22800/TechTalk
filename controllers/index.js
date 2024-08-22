@@ -8,11 +8,11 @@ router.use('/auth', auth);
 router.use('/api', api);
 
 router.use((req, res, next) => {
-  if (req.session.logged_in && req.url !== '/home' && req.url !== '/home/dashboard') {
+  if (req.session.logged_in && !req.url.startsWith('home')) {
     res.redirect('/home');
   }
   
-  if (!req.session.logged_in && req.url !== '/auth/login' && req.url !== '/auth/register') {
+  if (!req.session.logged_in && !req.url.startsWith('auth')) {
     res.redirect('/auth/login');
   }
 

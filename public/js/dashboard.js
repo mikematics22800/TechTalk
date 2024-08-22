@@ -1,4 +1,4 @@
-const modal = document.querySelector('#modal');
+const modal = document.querySelector('.modal');
 
 modal.style.display = 'none';
 
@@ -26,13 +26,27 @@ const submitPost = async (e) => {
     alert('Post uploaded!');
     modal.style.display = 'none';
   } else {
-    // If the res is not OK, show an alert with an error message
+    const err = await res.json();
+    alert(err.message);
+  }
+}
+
+const deletePost = async (e) => {
+  e.preventDefault()
+  const id = e.target.getAttribute('id')
+  const res = await fetch(`/api/posts/${id}`, {method: 'DELETE'})
+  if (res.ok) {
+    alert('Post deleted!');
+  } else {
     const err = await res.json();
     alert(err.message);
   }
 }
 
 document.querySelector('#new-post').addEventListener('click', openPostModal);
-document.querySelector('#discard').addEventListener('click', closePostModal);
+document.querySelector('#discard-post').addEventListener('click', closePostModal);
 document.querySelector('#make-post').addEventListener('submit', submitPost);
+document.querySelector('.del-post').addEventListener('click', deletePost);
+
+
 

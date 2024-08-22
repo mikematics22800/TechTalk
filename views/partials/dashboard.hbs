@@ -1,29 +1,36 @@
-<div id="dashboard">
-  <button id="new-post">New Post</button>
+<div class="dashboard">
+  <button class="new-post">New Post</button>
   <ul class="posts">
-    {{#each userPosts as |post|}}
-      <li class="post">
+    {{#each posts as |post|}}
+      <div class="post">
         <header>
           <h2>{{post.title}}</h2>
-          <h4>Posted by {{post.username}} at {{post.createdAt}}</h4>
+          <span>
+            <h4>{{post.createdAt}}</h4>
+            <a href="/home/posts/{{post.id}}/edit">Edit</a>
+            <button class="del-post" id={{post.id}}>Delete</button>
+          </span>
         </header>
-        <p>{{post.content}}</p>
-      </li>
+        <div>
+          <p>{{post.content}}</p>
+          <a href="/home/posts/{{post.id}}">Comments</a>
+        </div>
+      </div>
     {{/each}}
   </ul>
-  <div id="modal">
-    <form id="make-post">
+  <div class="modal">
+    <form class="make-post">
       <div class="input-container">
         <h2>Title</h2>
-        <input id="post-title" type="text" pattern=".{0,48}" title="Exceeded character limit" required>
+        <input class="post-title" type="text" pattern=".{0,48}" title="Exceeded character limit" required>
       </div>
       <div class="input-container">
         <h2>Content</h2>
-        <textarea id="post-content" pattern=".{0,480}" title="Exceeded character limit" required></textarea> 
+        <textarea class="post-content" pattern=".{0,480}" title="Exceeded character limit" required></textarea> 
       </div>
       <div class="button-container">
-        <button id="submit-post" type="submit">Submit</button>
-        <button id="discard" type="button">Discard</button>
+        <button class="submit-post" type="submit">Submit</button>
+        <button class="discard-post" type="button">Discard</button>
       </div>
     </form>
   </div>
