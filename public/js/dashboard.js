@@ -14,17 +14,21 @@ const closePostModal = (e) => {
 
 const submitPost = async (e) => {
   e.preventDefault();
+  const title = document.querySelector('.post-title');
+  const content = document.querySelector('.post-content');
   const res = await fetch('/api/posts', {
     method: 'POST',
     body: JSON.stringify({
-      title: document.querySelector('#post-title').value,
-      content: document.querySelector('#post-content').value,
+      title: title.value,
+      content: content.value,
     }),
     headers: { 'Content-Type': 'application/json' },
   })
   if (res.ok) {
     alert('Post uploaded!');
     modal.style.display = 'none';
+    title.value = '';
+    content.value = '';
   } else {
     const err = await res.json();
     alert(err.message);
@@ -43,10 +47,13 @@ const deletePost = async (e) => {
   }
 }
 
-document.querySelector('#new-post').addEventListener('click', openPostModal);
-document.querySelector('#discard-post').addEventListener('click', closePostModal);
-document.querySelector('#make-post').addEventListener('submit', submitPost);
-document.querySelector('.del-post').addEventListener('click', deletePost);
+document.querySelector('.new-post').addEventListener('click', openPostModal);
+document.querySelector('.discard-post').addEventListener('click', closePostModal);
+document.querySelector('.make-post').addEventListener('submit', submitPost);
+
+document.querySelectorAll('.del-post').forEach(element => {
+  element.addEventListener('click', deletePost);
+});
 
 
 

@@ -15,5 +15,4 @@ router.get('/register', (req, res) => {
   res.render('auth', { partial: 'register' });
 });
 
-
 module.exports = router;

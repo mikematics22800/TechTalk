@@ -3,8 +3,8 @@ const login = async (e) => {
   e.preventDefault(); // Prevent the default form submission behavior
 
   // Get the values from the email and password input fields
-  const username = document.querySelector('#username-login').value.trim();
-  const password = document.querySelector('#password-login').value.trim();
+  const username = document.querySelector('.username-login').value.trim();
+  const password = document.querySelector('.password-login').value.trim();
 
   // Login POST request
   const res = await fetch('/api/users/login', {
@@ -24,4 +24,4 @@ const login = async (e) => {
 };
 
 // Add an event listener to the login form to handle form submission
-document.querySelector('#login').addEventListener('submit', login);
+document.querySelector('.login').addEventListener('submit', login);

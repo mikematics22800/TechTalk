@@ -18,7 +18,7 @@ const submitComment = async (e) => {
   const res = await fetch('/api/comments', {
     method: 'POST',
     body: JSON.stringify({
-      content: document.querySelector('#comment-content').value,
+      content: document.querySelector('.comment-content').value,
       post_id: postId
     }),
     headers: { 'Content-Type': 'application/json' },
@@ -32,7 +32,7 @@ const submitComment = async (e) => {
   }
 }
 
-document.querySelector('#new-comment').addEventListener('click', openCommentModal);
-document.querySelector('#discard-comment').addEventListener('click', closeCommentModal);
+document.querySelector('.new-comment').addEventListener('click', openCommentModal);
+document.querySelector('.discard-comment').addEventListener('click', closeCommentModal);
 document.querySelector('.add-comment').addEventListener('submit', submitComment);
 

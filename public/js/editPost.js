@@ -4,8 +4,8 @@ const submitEdit = async (e) => {
   const res = await fetch(`/api/posts/${id}`, {
     method: 'PUT',
     body: JSON.stringify({
-      title: document.querySelector('#post-title').value,
-      content: document.querySelector('#post-content').value,
+      title: document.querySelector('.post-title').value,
+      content: document.querySelector('.post-content').value,
     }),
     headers: { 'Content-Type': 'application/json' },
   })
@@ -19,5 +19,5 @@ const submitEdit = async (e) => {
   }
 }
 
-document.querySelector('#edit-post').addEventListener('submit', submitEdit);
+document.querySelector('.edit-post').addEventListener('submit', submitEdit);
 

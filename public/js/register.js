@@ -3,9 +3,9 @@ const register = async (e) => {
   e.preventDefault(); // Prevent the default form submission behavior
 
   // Get the values from the email and password input fields
-  const username = document.querySelector('#username-register').value.trim();
-  const password = document.querySelector('#password-register').value.trim();
-  const passwordConfirm = document.querySelector('#password-confirm').value.trim();
+  const username = document.querySelector('.username-register').value.trim();
+  const password = document.querySelector('.password-register').value.trim();
+  const passwordConfirm = document.querySelector('.password-confirm').value.trim();
 
   // Check if both email and password are provided
   if (username && password) {
@@ -32,4 +32,4 @@ const register = async (e) => {
 };
 
 // Add an event listener to the register form to handle form submission
-document.querySelector('#register').addEventListener('submit', register);
+document.querySelector('.register').addEventListener('submit', register);
