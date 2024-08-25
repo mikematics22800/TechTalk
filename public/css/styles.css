@@ -60,7 +60,7 @@ nav button, .new-post {
 	justify-content: center;
 	align-items: center;
 	width: 100vw;
-	height: 100vh;
+	height: calc(100vh - 100px);
 }
 
 form {
