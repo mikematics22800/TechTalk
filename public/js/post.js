@@ -23,12 +23,11 @@ const submitComment = async (e) => {
     }),
     headers: { 'Content-Type': 'application/json' },
   })
-  if (res.ok) {
-    alert('Comment uploaded!');
-    modal.style.display = 'none';
-  } else {
-    const err = await res.json();
-    alert(err.message);
+  const jsonData = await res.json();
+  alert(jsonData.message);
+  modal.style.display = 'none';
+  if (!res.ok) {
+    console.log(jsonData.err);
   }
 }
 

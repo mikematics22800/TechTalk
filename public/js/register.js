@@ -25,8 +25,9 @@ const register = async (e) => {
       document.location.replace('/home');
     } else {
       // If the response is not OK, show an alert with an error message
-      const err = await res.json();
-      alert(err.message);
+      const error = await res.json();
+      alert(error.message);
+      console.log(error.err);
     }
   }
 };

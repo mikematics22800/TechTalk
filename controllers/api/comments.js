@@ -10,8 +10,8 @@ router.post('/', async (req, res) => {
       post_id: req.body.post_id,
     });
     res.status(200).json({ message: 'Comment uploaded!' });
-  } catch (err) {
-    res.status(400).json({ message: 'Failed to upload comment' });
+  } catch(err) {
+    res.status(400).json({ message: 'Failed to upload comment', err });
   }
 });
 

@@ -30,9 +30,9 @@ router.post('/', async (req, res) => {
       // Send success response
       return res.status(200).json({ message: 'Register successful!' });
     });
-  } catch {
+  } catch(err) {
     // Handle unexpected errors
-    res.status(500).json({ message: 'Register failed'});
+    res.status(500).json({ message: 'Register failed', err});
   }
 });
 

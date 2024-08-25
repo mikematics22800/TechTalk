@@ -4,6 +4,8 @@ const editPostModal = document.querySelector('#edit-post-modal');
 postModal.style.display = 'none';
 editPostModal.style.display = 'none';
 
+let editId
+
 const openPostModal = (e) => {
   e.preventDefault();
   postModal.style.display = 'flex';
@@ -16,15 +18,14 @@ const closePostModal = (e) => {
 
 const openEditPostModal = (e) => {
   e.preventDefault();
-  const id = e.target.getAttribute('id');
+  editId = e.target.getAttribute('id');
   const title = document.querySelector('.edit-post-title');
   const content = document.querySelector('.edit-post-content');
-  const originalPost = document.querySelector(`.post[id="${id}"]`);
+  const originalPost = document.querySelector(`.post[id="${editId}"]`);
   const originalTitle = originalPost.querySelector('.post-title').innerText;
   const originalContent = originalPost.querySelector('.post-content').innerText;
   title.value = originalTitle;
   content.value = originalContent;
-  console.log(originalTitle, originalContent);
   editPostModal.style.display = 'flex';
 }
 
@@ -50,14 +51,16 @@ const submitPost = async (e) => {
   content.value = '';
   const jsonData = await res.json();
   alert(jsonData.message);
+  if (!res.ok) {
+    console.log(jsonData.err);
+  }
 }
 
 const editPost = async (e) => {
   e.preventDefault();
-  const id = e.target.getAttribute('id');
   const title = document.querySelector('.edit-post-title');
   const content = document.querySelector('.edit-post-content');
-  const res = await fetch(`/api/posts/${id}`, {
+  const res = await fetch(`/api/posts/${editId}`, {
     method: 'PUT',
     body: JSON.stringify({
       title: title.value,
@@ -70,6 +73,9 @@ const editPost = async (e) => {
   content.value = '';
   const jsonData = await res.json();
   alert(jsonData.message);
+  if (!res.ok) {
+    console.log(jsonData.err);
+  }
 }
 
 const deletePost = async (e) => {
@@ -78,6 +84,9 @@ const deletePost = async (e) => {
   const res = await fetch(`/api/posts/${id}`, {method: 'DELETE'})
   const jsonData = await res.json();
   alert(jsonData.message);
+  if (!res.ok) {
+    console.log(jsonData.err);
+  }
 }
 
 document.querySelector('.new-post').addEventListener('click', openPostModal);

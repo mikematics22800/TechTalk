@@ -10,8 +10,8 @@ router.post('/', async (req, res) => {
       username: req.session.user.name
     });
     res.status(200).json({message: 'Post uploaded!'});
-  } catch {
-    res.status(500).json({message: 'Failed to upload post'});
+  } catch(err) {
+    res.status(500).json({message: 'Failed to upload post', err});
   }
 });
 
@@ -20,8 +20,8 @@ router.delete('/:id', async (req, res) => {
   try {
     await Post.destroy({where: {id: req.params.id,}});
     res.status(200).json({message: 'Post deleted!'});
-  } catch (err) {
-    res.status(500).json({ message: 'Failed to delete post'});
+  } catch(err) {
+    res.status(500).json({ message: 'Failed to delete post', err});
   }
 });
 
@@ -30,8 +30,8 @@ router.put('/:id', async (req, res) => {
   try {
     await Post.update(req.body, {where: {id: req.params.id,}});
     res.status(200).json({message: 'Post edited!'});
-  } catch (err) {
-    res.status(500).json({ message: 'Failed to edit post'});
+  } catch(err) {
+    res.status(500).json({ message: 'Failed to edit post', err});
   }
 });
 
