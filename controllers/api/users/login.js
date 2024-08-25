@@ -25,11 +25,11 @@ router.post('/', async (req, res) => {
       req.session.user = user.dataValues;
       req.session.logged_in = true;
       // Send success response
-      return res.status(200).json({ message: 'Login successful' });
+      return res.status(200).json({ message: 'Login successful!' });
     });
   } catch {
     // Handle unexpected errors
-    res.status(500).json({ message: 'Failed to login due to unexpected error'});
+    res.status(500).json({ message: 'Login failed'});
   }
 });
 

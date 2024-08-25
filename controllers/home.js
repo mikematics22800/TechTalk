@@ -48,25 +48,15 @@ router.get('/posts/:id', async (req, res) => {
   post = post.dataValues;
   post.createdAt = formatDate(post.createdAt);
   let comments =  await Comment.findAll({ where: { post_id: req.params.id } });
-  comments = comments.map(comment => comment.dataValues);
+  comments = comments.map(comment => {
+    const commentValues = comment.dataValues;
+    commentValues.createdAt = formatDate(commentValues.createdAt);
+    return commentValues;
+  });
   try {
     res.render('home', { partial: 'post', post, comments });
   } catch (err) {
     res.status(500).json(err)
-  }
-})
-
-router.get('/posts/:id/edit', async (req, res) => {
-  let post = await Post.findByPk(req.params.id)
-  post = post.dataValues;
-  if (post.username !== req.session.user.name) {
-    return res.redirect('/');
-  }
-  post.createdAt = formatDate(post.createdAt);
-  try {
-    res.render('home', { partial: 'post', post });
-  } catch (err) {
-    res.status(500).json(err);
   }
 })
 

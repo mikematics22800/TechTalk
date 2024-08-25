@@ -28,11 +28,11 @@ router.post('/', async (req, res) => {
       req.session.user = user;
       req.session.logged_in = true;
       // Send success response
-      return res.status(200).json({ message: 'Register successful' });
+      return res.status(200).json({ message: 'Register successful!' });
     });
   } catch {
     // Handle unexpected errors
-    res.status(500).json({ message: 'Failed to register due to unexpected error'});
+    res.status(500).json({ message: 'Register failed'});
   }
 });
 

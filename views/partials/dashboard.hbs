@@ -1,36 +1,51 @@
 <div class="dashboard">
   <button class="new-post">New Post</button>
-  <ul class="posts">
+  <div class="posts">
     {{#each posts as |post|}}
-      <li class="post">
+      <a href="home/posts/{{post.id}}" class="post" id={{post.id}}>
         <header>
-          <h2>{{post.title}}</h2>
-          <span>
-            <h4>{{post.createdAt}}</h4>
-            <a href="/home/posts/{{post.id}}/edit">Edit</a>
-            <button class="del-post" id={{post.id}}>Delete</button>
-          </span>
+          <h2 class="post-title">{{post.title}}</h2>
+          <div class="header-btns">
+            <h4>Posted on {{post.createdAt}}</h4>
+            <button class="edit-post-btn" id={{post.id}}>Edit</button>
+            <button class="delete-post" id={{post.id}}>Delete</button>
+          </div>
         </header>
-        <div>
+        <div class="post-content">
           <p>{{post.content}}</p>
-          <a href="/home/posts/{{post.id}}">Comments</a>
         </div>
-      </li>
+      </a>
     {{/each}}
-  </ul>
-  <div class="modal">
+  </div>
+  <div class="modal" id="make-post-modal">
     <form class="make-post">
       <div class="input-container">
         <h2>Title</h2>
-        <input class="post-title" type="text" pattern=".{0,48}" title="Exceeded character limit" required>
+        <input class="make-post-title" type="text" pattern=".{0,48}" title="Exceeded character limit" required>
       </div>
       <div class="input-container">
         <h2>Content</h2>
-        <textarea class="post-content" pattern=".{0,480}" title="Exceeded character limit" required></textarea> 
+        <textarea class="make-post-content" pattern=".{0,480}" title="Exceeded character limit" required></textarea> 
       </div>
-      <div class="button-container">
+      <div class="btn-container">
         <button class="submit-post" type="submit">Submit</button>
         <button class="discard-post" type="button">Discard</button>
+      </div>
+    </form>
+  </div>
+  <div class="modal" id="edit-post-modal">
+    <form class="edit-post">
+      <div class="input-container">
+        <h2>Title</h2>
+        <input class="edit-post-title" type="text" pattern=".{0,48}" title="Exceeded character limit" required>
+      </div>
+      <div class="input-container">
+        <h2>Content</h2>
+        <textarea class="edit-post-content" pattern=".{0,480}" title="Exceeded character limit" required></textarea> 
+      </div>
+      <div class="btn-container">
+        <button class="submit-edit" type="submit">Submit</button>
+        <button class="discard-edit" type="button">Discard</button>
       </div>
     </form>
   </div>

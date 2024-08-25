@@ -2,15 +2,15 @@
   <div class="post" id={{post.id}}>
     <header>
       <h1>{{post.title}}</h1>
-      <h4>Posted by {{post.username}} at {{post.createdAt}}</h4>
+      <h4>Posted by {{post.username}} on {{post.createdAt}}</h4>
     </header>
-    <div>
+    <div class="post-content">
       <p>{{post.content}}</p>
       <button class="new-comment">Add Comment</button>
       <div class="comments">
         {{#each comments as |comment|}}
           <div class="comment">
-            <h4>{{comment.username}}</h4>
+            <h4>Posted by {{comment.username}} at {{comment.createdAt}}</h4>            
             <p>{{comment.content}}</p>
           </div>
         {{/each}}
