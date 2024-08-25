@@ -10,7 +10,7 @@
       <div class="comments">
         {{#each comments as |comment|}}
           <div class="comment">
-            <h4>Posted by {{comment.username}} at {{comment.createdAt}}</h4>            
+            <h4>Commented by {{comment.username}} at {{comment.createdAt}}</h4>            
             <p>{{comment.content}}</p>
           </div>
         {{/each}}
@@ -20,7 +20,7 @@
   <div class="modal">
     <form class="add-comment" id={{post.id}}>
       <textarea class="comment-content" pattern=".{0,480}" title="Exceeded character limit" required></textarea> 
-      <div class="button-container">
+      <div class="btn-container">
         <button class="submit-comment" type="submit">Submit</button>
         <button class="discard-comment" type="button">Discard</button>
       </div>
