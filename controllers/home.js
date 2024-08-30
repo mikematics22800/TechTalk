@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { Post, Comment } = require('../models');
 
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
+const formatDate = (timestamp) => {
+  const date = new Date(timestamp);
   const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
   return date.toLocaleDateString('en-US', options);
 }
